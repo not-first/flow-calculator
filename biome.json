@@ -26,10 +26,7 @@
   },
   "overrides": [
     {
-      "include": [
-        "./tsconfig.app.json",
-        "./tsconfig.node.json"
-      ],
+      "include": ["./tsconfig.app.json", "./tsconfig.node.json"],
       "json": {
         "parser": {
           "allowComments": true
