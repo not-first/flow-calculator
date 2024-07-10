@@ -1,6 +1,6 @@
 import Flow from "./components/flow";
-import InfoPanel from "./components/info-panel";
 import NodePanel from "./components/node-panel";
+import InfoPanel from "./components/info-panel";
 import {
   ResizableHandle,
   ResizablePanel,
