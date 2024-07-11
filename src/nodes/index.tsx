@@ -1,12 +1,13 @@
 import type React from "react";
 import type { Node, NodeTypes } from "@xyflow/react";
+import { InputNumberNode, SliderNumberNode } from "./input-number";
 
 type NodeData = { value: number; type?: string };
 export type NodeType = Node<NodeData, types>;
 const customNodes: NodeTypes = {
-  //   inputNumber: InputNumberNode,
+    inputNumber: InputNumberNode,
+    sliderNumber: SliderNumberNode,
   //   valueDisplay: ValueDisplayNode,
-  //   sliderNumber: SliderNumberNode,
   //   add: AddNode,
   //   subtract: SubtractNode,
   //   multiply: MultiplyNode,

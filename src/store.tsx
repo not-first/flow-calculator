@@ -1,4 +1,4 @@
-import type { NodeType, types } from "@/nodes";
+import type { NodeType } from "@/nodes";
 import {
   addEdge,
   applyEdgeChanges,
@@ -14,16 +14,26 @@ import {
 import { create } from "zustand";
 
 const initialNodes = [
-    { id: 'a', position: { x: 0, y: 0 } },
-    { id: 'b', position: { x: 0, y: 100 } }
+  {
+    id: "1",
+    type: "inputNumber",
+    data: { value: 5 },
+    position: { x: 100, y: 100 },
+  },
+  {
+    id: "3",
+    type: "sliderNumber",
+    data: { value: 5 },
+    position: { x: 100, y: 200 },
+  },
 ];
 
 const initialEdges: Edge[] = [
-  // {
-  //   id: "1->2",
-  //   source: "1",
-  //   target: "2",
-  // },
+  {
+    id: "a->b",
+    source: "a",
+    target: "b",
+  },
 ];
 
 export interface FlowStore {
