@@ -12,6 +12,8 @@ const selector = (state: FlowStore) => ({
   onEdgesChange: state.onEdgesChange,
   onConnect: state.onConnect,
   isValidConnection: state.isValidConnection,
+  selectedNodeType: state.selectedNodeType,
+  onNodeMouseEnter: state.onNodeMouseEnter,
 });
 
 export default function Flow() {
@@ -22,6 +24,7 @@ export default function Flow() {
     onEdgesChange,
     onConnect,
     isValidConnection,
+    onNodeMouseEnter,
   } = useFlowStore(useShallow(selector));
 
   return (
@@ -34,6 +37,7 @@ export default function Flow() {
         onConnect={onConnect}
         nodeTypes={nodeTypes}
         isValidConnection={isValidConnection}
+        onNodeMouseEnter={onNodeMouseEnter}
         defaultEdgeOptions={{
           markerEnd: {
             type: MarkerType.ArrowClosed,

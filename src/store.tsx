@@ -1,4 +1,4 @@
-import type { NodeType } from "@/nodes";
+import type { NodeType, types } from "@/nodes";
 import {
   addEdge,
   applyEdgeChanges,
@@ -19,6 +19,12 @@ const initialNodes = [
     type: "inputNumber",
     data: { value: 5 },
     position: { x: 100, y: 100 },
+  },
+  {
+    id: "2",
+    type: "valueDisplay",
+    data: { value: 5 },
+    position: { x: 300, y: 100 },
   },
   {
     id: "3",
@@ -45,6 +51,8 @@ export interface FlowStore {
   onEdgesChange: OnEdgesChange;
   onConnect: OnConnect;
   isValidConnection: (connection: Edge | Connection) => boolean;
+  selectedNodeType: types | null;
+  onNodeMouseEnter: (event: React.MouseEvent, node: NodeType) => void;
 }
 
 const useFlowStore = create<FlowStore>()((set, get) => ({
@@ -76,6 +84,10 @@ const useFlowStore = create<FlowStore>()((set, get) => ({
       return false;
     }
     return true;
+  },
+  selectedNodeType: null,
+  onNodeMouseEnter: (event, node) => {
+    set({ selectedNodeType: node.type });
   },
 }));
 
