@@ -35,18 +35,24 @@ function NodeInfo({ nodeObject }: { nodeObject: NodeDefinition }) {
   return (
     <ScrollArea>
       <div className="flex flex-col items-center justify-center p-3">
-      <div className="grid gap-2 p-3 max-w-64">
-        <div className="flex items-center gap-2">
-          <h3 className="font-semibold text-xl">{nodeObject?.name}</h3>
-          <Badge>
-            {nodeObject?.category.charAt(0).toUpperCase() +
-              nodeObject?.category.slice(1)}
-          </Badge>
+        <div className="grid gap-2 p-3 max-w-64">
+          <div className="flex items-center gap-2">
+            <h3 className="font-semibold text-xl">{nodeObject?.name}</h3>
+            <Badge>
+              {nodeObject?.category.charAt(0).toUpperCase() +
+                nodeObject?.category.slice(1)}
+            </Badge>
+          </div>
+          <p className="text-muted-foreground">
+            {nodeObject?.details.description}
+          </p>
+          <h4 className="font-medium text-base">
+            Inputs: {nodeObject?.details.input}
+          </h4>
+          <h4 className="font-medium text-base">
+            Outputs: {nodeObject?.details.output}
+          </h4>
         </div>
-        <p className="text-muted-foreground">{nodeObject?.details.description}</p>
-        <h4 className="font-medium text-base">Inputs: {nodeObject?.details.input}</h4>
-        <h4 className="font-medium text-base">Outputs: {nodeObject?.details.output}</h4>
-      </div>
       </div>
     </ScrollArea>
   );

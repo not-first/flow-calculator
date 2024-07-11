@@ -1,4 +1,5 @@
 import type { NodeType, types } from "@/nodes";
+import { DragEndEvent, DragStartEvent } from "@dnd-kit/core";
 import {
   addEdge,
   applyEdgeChanges,
@@ -53,6 +54,9 @@ export interface FlowStore {
   isValidConnection: (connection: Edge | Connection) => boolean;
   selectedNodeType: types | null;
   onNodeMouseEnter: (event: React.MouseEvent, node: NodeType) => void;
+  draggedItem: types | null;
+  handleDragStart: (event: DragStartEvent) => void;
+  handleDragEnd: (event: DragEndEvent) => void;
 }
 
 const useFlowStore = create<FlowStore>()((set, get) => ({
@@ -88,6 +92,35 @@ const useFlowStore = create<FlowStore>()((set, get) => ({
   selectedNodeType: null,
   onNodeMouseEnter: (event, node) => {
     set({ selectedNodeType: node.type });
+  },
+  draggedItem: null,
+  handleDragStart: (event) => {
+    set({ draggedItem: event.active.id });
+  },
+  handleDragEnd: (event) => {
+    set({ draggedItem: null });
+
+    const nodes = get().nodes;
+    const setNodes = get().setNodes;
+
+    if (event.over) {
+      console.log("Dropped over:", event.over.id);
+
+      const nodeType = event.active.id as types;
+      const position = {
+        x: 100,
+        y: 100,
+      };
+      const newNode: NodeType = {
+        id: "new-node",
+        type: nodeType,
+        position: position,
+        data: { value: 0 },
+      };
+
+      setNodes([...nodes, newNode]);
+      console.log("New node:", newNode);
+    }
   },
 }));
 

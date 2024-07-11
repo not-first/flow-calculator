@@ -1,5 +1,19 @@
 import type React from "react";
 import type { Node, NodeTypes } from "@xyflow/react";
+import {
+  TextCursorInputIcon,
+  SlidersHorizontalIcon,
+  PlusIcon,
+  MinusIcon,
+  EyeIcon,
+  XIcon,
+  DivideIcon,
+  ChevronUpIcon,
+  RadicalIcon,
+  UnfoldVerticalIcon,
+  Repeat2Icon,
+} from "lucide-react";
+
 import { InputNumberNode, SliderNumberNode } from "./input-number";
 import ValueDisplayNode from "./value-display";
 
@@ -41,6 +55,7 @@ export interface NodeDefinition {
   reference?: (props: PropTypes) => React.JSX.Element;
   type: types;
   name: string;
+  icon?: React.JSX.Element;
   details: {
     description: string;
     input: string;
@@ -54,6 +69,7 @@ export const nodes: NodeDefinition[] = [
   {
     type: "inputNumber",
     name: "Number Input",
+    icon: <TextCursorInputIcon />,
     details: {
       description: "A simple number input field.",
       input: "",
@@ -65,6 +81,7 @@ export const nodes: NodeDefinition[] = [
   {
     type: "sliderNumber",
     name: "Number Slider",
+    icon: <SlidersHorizontalIcon />,
     details: {
       description: "A slider to select a number value.",
       input: "",
@@ -76,6 +93,7 @@ export const nodes: NodeDefinition[] = [
   {
     type: "valueDisplay",
     name: "Value Display",
+    icon: <EyeIcon />,
     details: {
       description: "Displays a number value, for usage inside flows.",
       input: "",
@@ -87,6 +105,7 @@ export const nodes: NodeDefinition[] = [
   {
     type: "add",
     name: "Add",
+    icon: <PlusIcon />,
     details: {
       description: "Adds two numbers together.",
       input: "",
@@ -98,6 +117,7 @@ export const nodes: NodeDefinition[] = [
   {
     type: "subtract",
     name: "Subtract",
+    icon: <MinusIcon />,
     details: {
       description: "Subtracts one number from another.",
       input: "",
@@ -109,6 +129,7 @@ export const nodes: NodeDefinition[] = [
   {
     type: "multiply",
     name: "Multiply",
+    icon: <XIcon />,
     details: {
       description: "Multiplies two numbers together.",
       input: "",
@@ -120,6 +141,7 @@ export const nodes: NodeDefinition[] = [
   {
     type: "divide",
     name: "Divide",
+    icon: <DivideIcon />,
     details: {
       description: "Divides one number by another.",
       input: "",
@@ -131,6 +153,7 @@ export const nodes: NodeDefinition[] = [
   {
     type: "powerOf",
     name: "Power Of",
+    icon: <ChevronUpIcon />,
     details: {
       description: "Raises a number to the power of another number.",
       input: "",
@@ -142,6 +165,7 @@ export const nodes: NodeDefinition[] = [
   {
     type: "rootOf",
     name: "Root Of",
+    icon: <RadicalIcon />,
     details: {
       description: "Finds the root of a number.",
       input: "",
@@ -153,6 +177,7 @@ export const nodes: NodeDefinition[] = [
   {
     type: "makePositive",
     name: "Make Positive",
+    icon: <PlusIcon />,
     details: {
       description: "Converts a number to a positive value.",
       input: "",
@@ -164,6 +189,7 @@ export const nodes: NodeDefinition[] = [
   {
     type: "makeNegative",
     name: "Make Negative",
+    icon: <MinusIcon />,
     details: {
       description: "Converts a number to a negative value.",
       input: "",
@@ -175,6 +201,7 @@ export const nodes: NodeDefinition[] = [
   {
     type: "round",
     name: "Round",
+    icon: <UnfoldVerticalIcon />,
     details: {
       description: "Rounds a number to the nearest whole number.",
       input: "",
@@ -186,6 +213,7 @@ export const nodes: NodeDefinition[] = [
   {
     type: "flipNumber",
     name: "Flip Number",
+    icon: <Repeat2Icon />,
     details: {
       description: "Reverses the sign of a number.",
       input: "",

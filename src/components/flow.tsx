@@ -4,6 +4,7 @@ import "@xyflow/react/dist/style.css";
 import useFlowStore, { type FlowStore } from "@/store";
 import { useShallow } from "zustand/react/shallow";
 import { nodeTypes } from "@/nodes";
+import { useDroppable } from "@dnd-kit/core";
 
 const selector = (state: FlowStore) => ({
   nodes: state.nodes,
@@ -17,6 +18,9 @@ const selector = (state: FlowStore) => ({
 });
 
 export default function Flow() {
+  const { setNodeRef } = useDroppable({
+    id: "flow-droppable",
+  });
   const {
     nodes,
     edges,
@@ -28,7 +32,7 @@ export default function Flow() {
   } = useFlowStore(useShallow(selector));
 
   return (
-    <div className="h-full">
+    <div className="h-full" ref={setNodeRef}>
       <ReactFlow
         nodes={nodes}
         onNodesChange={onNodesChange}
