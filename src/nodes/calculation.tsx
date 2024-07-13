@@ -23,6 +23,11 @@ export function CalculationNode({ data, id, calculationType }: PropTypes) {
     setSourceList(sources);
   }, [connections]);
 
+  const [isConnectable, setIsConnectable] = useState(true);
+  useEffect(() => {
+    setIsConnectable(connections.length < 2);
+  }, [connections]);
+
   const nodeData = useNodesData(sourceList);
 
   useEffect(() => {
@@ -60,7 +65,7 @@ export function CalculationNode({ data, id, calculationType }: PropTypes) {
 
   return (
     <>
-      <Handle type="target" position={Position.Left} />
+      <Handle type="target" position={Position.Left} isConnectable={isConnectable}/>
       <div className="flex h-11 w-32 flex-col gap-0 rounded-lg border border-black bg-white p-0 text-center shadow-lg">
         <Equation nodeData={nodeData} calculationType={calculationType} />
         <h1 className="font-bold text-xl">{data.value || 0}</h1>

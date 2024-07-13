@@ -105,9 +105,7 @@ const useFlowStore = create<FlowStore>()((set, get) => ({
     if (connection.source === connection.target) {
       return false;
     }
-
-    const targetNode = get().nodes.find((node) => node.id === connection.target);
-    console.log("Target node:", targetNode);
+    
     return true;
   },
   selectedNodeType: null,
