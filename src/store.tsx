@@ -1,4 +1,4 @@
-import type { NodeType, types } from "@/nodes";
+import { getId, type NodeType, type types } from "@/nodes";
 import { DragEndEvent, DragStartEvent } from "@dnd-kit/core";
 import {
   addEdge,
@@ -33,6 +33,24 @@ const initialNodes = [
     data: { value: 5 },
     position: { x: 100, y: 200 },
   },
+  {
+    id: '4',
+    type: 'add',
+    data: { value: 0 },
+    position: { x: 300, y: 200 },
+  },
+  {
+    id: '5',
+    type: 'subtract',
+    data: { value: 0 },
+    position: { x: 500, y: 200 },
+  },
+  {
+    id: '6',
+    type: 'multiply',
+    data: { value: 0 },
+    position: { x: 700, y: 200 },
+  }
 ];
 
 const initialEdges: Edge[] = [
@@ -87,6 +105,9 @@ const useFlowStore = create<FlowStore>()((set, get) => ({
     if (connection.source === connection.target) {
       return false;
     }
+
+    const targetNode = get().nodes.find((node) => node.id === connection.target);
+    console.log("Target node:", targetNode);
     return true;
   },
   selectedNodeType: null,
@@ -112,7 +133,7 @@ const useFlowStore = create<FlowStore>()((set, get) => ({
         y: 100,
       };
       const newNode: NodeType = {
-        id: "new-node",
+        id: getId(),
         type: nodeType,
         position: position,
         data: { value: 0 },

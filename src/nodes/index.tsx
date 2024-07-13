@@ -16,6 +16,7 @@ import {
 
 import { InputNumberNode, SliderNumberNode } from "./input-number";
 import ValueDisplayNode from "./value-display";
+import { AddNode, MultiplyNode, SubtractNode } from "./calculation";
 
 type NodeData = { value: number; type?: string };
 export type NodeType = Node<NodeData, types>;
@@ -23,9 +24,9 @@ const customNodes: NodeTypes = {
   inputNumber: InputNumberNode,
   sliderNumber: SliderNumberNode,
   valueDisplay: ValueDisplayNode,
-  //   add: AddNode,
-  //   subtract: SubtractNode,
-  //   multiply: MultiplyNode,
+  add: AddNode,
+  subtract: SubtractNode,
+  multiply: MultiplyNode,
   //   divide: DivideNode,
   //   powerOf: PowerOfNode,
   //   rootOf: RootOfNode,
@@ -223,5 +224,14 @@ export const nodes: NodeDefinition[] = [
     category: "actions",
   },
 ];
+
+let currentId = "10";
+export function getId() {
+  const id = currentId;
+  const nextId = parseInt(currentId) + 1;
+  currentId = nextId.toString();
+
+  return id;
+}
 
 export { customNodes as nodeTypes };
